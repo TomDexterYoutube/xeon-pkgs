@@ -2,6 +2,8 @@
 
 Publishing a package is intentionally simple. Every package lives inside this repository and consists of a small folder containing your source code and package information.
 
+---
+
 ## Step 1 - Add your package to `pkg-list`
 
 Open the `pkg-list` file and add a new entry using the following format:
@@ -44,8 +46,8 @@ Examples:
 Rules:
 
 * Exactly three numbers are required.
-* The **minor** and **patch** numbers must each be a single digit (`0-9`).
-* The **major** number may contain multiple digits.
+* The **major** version may contain multiple digits.
+* The **minor** and **patch** versions must each be a single digit (`0-9`).
 
 Valid:
 
@@ -72,7 +74,7 @@ Create a folder with exactly the same name as your package.
 
 Example:
 
-```
+```text
 json_parser/
 ```
 
@@ -82,24 +84,17 @@ json_parser/
 
 Inside your package folder, create a file named:
 
-```
+```text
 pkg.rub
 ```
 
 This is the package's main entry point.
 
-Example:
-
-```
-json_parser/
-├── pkg.rub
-```
-
 Your package may also contain additional `.rub` files.
 
-For example:
+Example:
 
-```
+```text
 json_parser/
 ├── pkg.rub
 ├── lexer.rub
@@ -115,11 +110,11 @@ These files can be imported normally using Rubidium's `import` system.
 
 Every package must include a file named:
 
-```
+```text
 pkg.info
 ```
 
-This file contains a description of the package.
+This file contains a short description of the package.
 
 Example:
 
@@ -129,23 +124,149 @@ A fast and lightweight JSON parser written in Rubidium.
 
 ---
 
+## Step 5 - Add `pkg.ver`
+
+Every package must also include a file named:
+
+```text
+pkg.ver
+```
+
+This file contains **only** the package version.
+
+Example:
+
+```text
+1.0.0
+```
+
+The version inside `pkg.ver` must match the version listed in `pkg-list`.
+
+---
+
 ## Final Structure
 
 A complete package should look like this:
 
-```
+```text
 json_parser/
 ├── pkg.rub
 ├── lexer.rub
 ├── parser.rub
 ├── utils.rub
-└── pkg.info
+├── pkg.info
+└── pkg.ver
 ```
 
-And the corresponding entry in `pkg-list`:
+With the corresponding entry in `pkg-list`:
 
 ```text
 json_parser|1.0.0
 ```
 
-That's it. No manifests, dependency files, build scripts, or forty-seven layers of configuration that somehow require another package manager to install the package manager. Just register the package, add the folder, include `pkg.rub`, and write a short description in `pkg.info`.
+---
+
+# Installing Packages
+
+Rubidium packages are managed using **Xeon**.
+
+All package commands begin with:
+
+```text
+xeon pkg
+```
+
+## Available Commands
+
+### Show Help
+
+```text
+xeon pkg help
+```
+
+Displays information about the package manager and all available commands.
+
+---
+
+### Fetch Package List
+
+```text
+xeon pkg fetch
+```
+
+Downloads the latest `pkg-list` from this repository.
+
+This updates the local package index but does **not** install or update any packages.
+
+---
+
+### Install a Package
+
+```text
+xeon pkg pull <package_name>
+```
+
+Downloads and installs the requested package.
+
+Example:
+
+```text
+xeon pkg pull json_parser
+```
+
+---
+
+### Remove a Package
+
+```text
+xeon pkg purge <package_name>
+```
+
+Removes an installed package.
+
+Example:
+
+```text
+xeon pkg purge json_parser
+```
+
+---
+
+### Upgrade Packages
+
+```text
+xeon pkg upgrade
+```
+
+Checks every installed package for updates.
+
+For each installed package, Xeon:
+
+1. Reads the package's local `pkg.ver`.
+2. Looks up the latest version in the downloaded `pkg-list`.
+3. Compares the versions.
+4. Downloads and replaces any package that has a newer version available.
+5. Leaves packages that are already up to date unchanged.
+
+It is recommended to fetch the latest package list before upgrading:
+
+```text
+xeon pkg fetch
+xeon pkg upgrade
+```
+
+---
+
+That's all there is to it.
+
+No manifests.
+
+No dependency graphs.
+
+No lock files.
+
+No build scripts.
+
+No twenty-seven configuration files arguing about whose turn it is to break the build.
+
+Just register the package, create its folder, include `pkg.rub`, `pkg.info`, and `pkg.ver`, and it's ready to be installed through Xeon.
