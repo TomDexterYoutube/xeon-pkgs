@@ -14,7 +14,7 @@ package_name|0.0.1
 
 ### Package Name Rules
 
-* Only lowercase letters (`a-z`) and underscores (`_`) are allowed.
+* Only lowercase letters (`a-z`) and underscores (`-`) are allowed.
 * Every package name must be unique.
 
 Examples:
