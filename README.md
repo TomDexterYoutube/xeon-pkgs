@@ -9,7 +9,7 @@ Publishing a package is intentionally simple. Every package lives inside this re
 Open the `pkg-list` file and add a new entry using the following format:
 
 ```text
-package_name|0.0.1
+package-name|0.0.1
 ```
 
 ### Package Name Rules
@@ -21,8 +21,8 @@ Examples:
 
 ```text
 math|1.0.0
-fast_math|2.1.3
-json_parser|0.5.8
+fast-math|2.1.3
+json-parser|0.5.8
 ```
 
 ### Version Rules
@@ -75,7 +75,7 @@ Create a folder with exactly the same name as your package.
 Example:
 
 ```text
-json_parser/
+json-parser/
 ```
 
 ---
@@ -95,7 +95,7 @@ Your package may also contain additional `.rub` files.
 Example:
 
 ```text
-json_parser/
+json-parser/
 ├── pkg.rub
 ├── lexer.rub
 ├── parser.rub
@@ -149,7 +149,7 @@ The version inside `pkg.ver` must match the version listed in `pkg-list`.
 A complete package should look like this:
 
 ```text
-json_parser/
+json-parser/
 ├── pkg.rub
 ├── lexer.rub
 ├── parser.rub
@@ -161,7 +161,7 @@ json_parser/
 With the corresponding entry in `pkg-list`:
 
 ```text
-json_parser|1.0.0
+json-parser|1.0.0
 ```
 
 ---
@@ -203,7 +203,7 @@ This updates the local package index but does **not** install or update any pack
 ### Install a Package
 
 ```text
-xeon pkg pull <package_name>
+xeon pkg pull <package-name>
 ```
 
 Downloads and installs the requested package.
@@ -211,7 +211,7 @@ Downloads and installs the requested package.
 Example:
 
 ```text
-xeon pkg pull json_parser
+xeon pkg pull json-parser
 ```
 
 ---
@@ -219,7 +219,7 @@ xeon pkg pull json_parser
 ### Remove a Package
 
 ```text
-xeon pkg purge <package_name>
+xeon pkg purge <package-name>
 ```
 
 Removes an installed package.
@@ -227,7 +227,7 @@ Removes an installed package.
 Example:
 
 ```text
-xeon pkg purge json_parser
+xeon pkg purge json-parser
 ```
 
 ---
