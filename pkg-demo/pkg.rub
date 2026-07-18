@@ -1,3 +1,0 @@
-fn demo() {
-  print("All working good!")
-}
