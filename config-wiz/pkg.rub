@@ -1,0 +1,25 @@
+fn read(file: str, var: str) -> str {
+  open(file) as x {
+    for line in x {
+      if line.has(var) {
+        return line
+      }
+    }
+  }
+}
+
+fn write(file: str, var: str, data: Any) -> str {
+  open(file) as x {
+    let mut local line_c: int = 0 
+    let done = False
+    for line in x {
+      if line.has(var) {
+        writeln(line_c, (var + "|" + data))
+        let done = True
+      }
+      line_c = line_c + 1
+    }
+    if done = False {
+      x.add(var + "|" + data)
+  }
+}
