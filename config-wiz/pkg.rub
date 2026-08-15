@@ -29,7 +29,7 @@ fn write(file: str, var: str, data: Any) {
         }
 
         if done == False {
-            x.add(var + "|" + data)
+            x.add(var + "|" + data + "\n")
         }
     }
 }
