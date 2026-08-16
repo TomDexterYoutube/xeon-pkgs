@@ -4,16 +4,16 @@ fn hash(data: Any) -> str {
     random.seed(data)
     let char_list = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     let data = data.to(str)
-    for x in range(0, str.len()) {
+    for x in range(0, data.len()) {
         let mut tmp = random(1, 62, i32)
-        let mut hash = ""
+        let mut hash_result = ""
         random.seed(tmp)
         if tmp <= 52 {
-            hash = hash + char_list.char(tmp)
+            hash_result = hash_result + char_list.char(tmp)
         }
     }
     tmp.drop()
     char_list.drop()
     data.drop()
-    return hash
+    return hash_result
 }
