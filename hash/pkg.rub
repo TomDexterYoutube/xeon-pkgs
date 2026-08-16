@@ -8,7 +8,7 @@ fn hash(data: Any) -> str {
         let mut tmp = random(1, 62, i32)
         let mut hash = ""
         random.seed(tmp)
-        if tmp =< 52 {
+        if tmp <= 52 {
             hash = hash + char_list.char(tmp)
         }
     }
